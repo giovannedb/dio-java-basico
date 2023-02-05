@@ -1,21 +1,22 @@
 package fila;
 
-public class fila {
+public class fila <T> {
     
-    private No refNoEntradaFila;
+    private No<T> refNoEntradaFila;
 
     public fila() {
         this.refNoEntradaFila = null;
     }
 
     //enfileirar -- estou pegando o ultimo NO  da fila e falando que o novoNo é o ultimo da fila agora
-    public void enqueue(No novoNo){
+    public void enqueue(T object){
+        No novoNo = new No(object);
         novoNo.setRefNo(refNoEntradaFila);
         refNoEntradaFila = novoNo;
     }
 
     //Primeiro NO da fila
-    public No first(){
+    public T first(){
         //testo se a fila está vazia, se não tiver entro na fila
         if(!this.isEmpty()){
             No primeiroNo = refNoEntradaFila;
@@ -29,11 +30,12 @@ public class fila {
                     break;
                 }
             }
+            return (T) primeiroNo.getObject();
         }
         return null;
     }
 
-    public No dequeue(){
+    public T dequeue(){
         
         if(!this.isEmpty()){
             No primeiroNo = refNoEntradaFila;
@@ -50,7 +52,7 @@ public class fila {
                     break;
                 }
             }
-            return primeiroNo;
+            return (T) primeiroNo.getObject();
         }
         return null;
     }
